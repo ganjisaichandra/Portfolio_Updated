@@ -10,12 +10,18 @@ export const profile = {
   },
 };
 
-export const experience = [
+export const experience: {
+  company: string; role: string; date: string; current?: boolean;
+  art: "ai" | "fintech" | "engineering";
+  image?: { src: string; alt: string; caption: string };
+  points: string[];
+}[] = [
   {
     company: "Hawky.ai",
     role: "Creative Strategist",
     date: "Aug 2026 — Present",
     current: true,
+    art: "ai",
     points: [
       "Write LLM instructions for AI-driven creative workflows.",
       "Collaborate with Product & Marketing teams on creative concepts.",
@@ -27,6 +33,7 @@ export const experience = [
     company: "Zanskar",
     role: "AI Product Focused UI/UX Designer",
     date: "Jan — Jul 2026",
+    art: "fintech",
     points: [
       "Designed mobile, web and tablet experiences for a fintech trading platform — Orders, Wealth Dashboard, IPO, Mutual Funds and Commodities.",
       "Created wireframes, high-fidelity UI, prototypes, reusable design-system components and visual assets with PMs and developers.",
@@ -37,6 +44,7 @@ export const experience = [
     company: "NIT Andhra Pradesh",
     role: "Mechanical Engineering",
     date: "Graduated 2026",
+    art: "engineering",
     image: { src: "/images/graduation.png", alt: "Sai Chandra receiving his degree certificate", caption: "Receiving my degree — NIT Andhra Pradesh, 2026" },
     points: [
       "Led design for the institute's official tech fest website, Techkriya.",
