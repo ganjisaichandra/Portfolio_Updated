@@ -68,8 +68,23 @@ export default function Contact() {
         />
         <div className="contact-cta">
           <Magnetic strength={0.5}>
-            <a href={`mailto:${profile.email}`} className="big-circle" data-cursor="Say hi">
-              Get in<br />touch
+            <a href={`mailto:${profile.email}`} className="big-circle" data-cursor="hide" aria-label="Get in touch by email">
+              <svg className="cta-ring" viewBox="0 0 200 200" aria-hidden="true">
+                <defs>
+                  <path id="cta-circle" d="M100 100 m-74 0 a74 74 0 1 1 148 0 a74 74 0 1 1 -148 0" />
+                </defs>
+                <text>
+                  <textPath href="#cta-circle" textLength="462" lengthAdjust="spacing">
+                    GET IN TOUCH ✦ LET&apos;S CREATE ✦ SAY HELLO ✦
+                  </textPath>
+                </text>
+              </svg>
+              <span className="cta-core" aria-hidden="true">
+                <svg className="cta-arrow" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 17 L17 7 M9 7 H17 V15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="cta-sheen" aria-hidden="true" />
             </a>
           </Magnetic>
         </div>

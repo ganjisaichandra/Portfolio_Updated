@@ -21,8 +21,10 @@ export default function Cursor() {
     };
     const over = (e: PointerEvent) => {
       const t = (e.target as HTMLElement).closest<HTMLElement>("a, button, [data-cursor]");
-      ring.current?.classList.toggle("hover", !!t);
-      setLabel(t?.dataset.cursor ?? "");
+      const hide = t?.dataset.cursor === "hide"; // element draws its own hover state
+      ring.current?.classList.toggle("hover", !!t && !hide);
+      ring.current?.classList.toggle("hidden", hide);
+      setLabel(hide ? "" : t?.dataset.cursor ?? "");
     };
     const leave = () => document.body.classList.remove("has-cursor");
 
