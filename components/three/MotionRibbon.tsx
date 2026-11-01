@@ -90,7 +90,7 @@ function Ribbon({ progress }: { progress: RibbonProgress }) {
     const t = state.clock.elapsedTime;
 
     const n = cards.length;
-    const start = 0.34; // some cards already on screen before scrolling
+    const start = 0.12; // first cards are already entering while the section scrolls into view
     const travel = 1 - start + n * GAP + 0.02;
     const mobile = size.width < 700;
 

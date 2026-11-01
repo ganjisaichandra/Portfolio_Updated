@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { RibbonProgress } from "../three/MotionRibbon";
 import { motionCards } from "@/lib/motionCards";
 
@@ -17,7 +18,7 @@ export default function Motion() {
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => setNear(e.isIntersecting), { rootMargin: "300px" });
+    const io = new IntersectionObserver(([e]) => setNear(e.isIntersecting), { rootMargin: "150% 0px" });
     if (root.current) io.observe(root.current);
 
     const ctx = gsap.context(() => {
@@ -31,14 +32,33 @@ export default function Motion() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (st) => {
-            progress.current.target = st.progress;
             setCount(Math.min(motionCards.length, 1 + Math.floor(st.progress * motionCards.length)));
           },
         },
       });
-      tl.fromTo(".m-line-1", { xPercent: 28 }, { xPercent: -28, ease: "none" }, 0)
-        .fromTo(".m-line-2", { xPercent: -28 }, { xPercent: 28, ease: "none" }, 0)
+      // slide each line at most 28% of its width, but never past the screen edge (phones)
+      const shift = (sel: string) => () => {
+        const el = root.current?.querySelector<HTMLElement>(sel);
+        if (!el) return 0;
+        const w = el.offsetWidth;
+        const room = (window.innerWidth - w) / 2 - window.innerWidth * 0.04;
+        return Math.max(0, Math.min(28, (room / w) * 100));
+      };
+      const s1 = shift(".m-line-1"), s2 = shift(".m-line-2");
+      tl.fromTo(".m-line-1", { xPercent: () => s1() }, { xPercent: () => -s1(), ease: "none" }, 0)
+        .fromTo(".m-line-2", { xPercent: () => -s2() }, { xPercent: () => s2(), ease: "none" }, 0)
         .fromTo(".motion-bar i", { scaleX: 0 }, { scaleX: 1, ease: "none" }, 0);
+
+      // The ribbon starts flying as soon as the section enters the screen (not only once pinned),
+      // so cards are already moving in while you scroll towards it.
+      const pinEnd = tl.scrollTrigger!;
+      ScrollTrigger.create({
+        trigger: root.current,
+        start: "top bottom",
+        end: () => pinEnd.end,
+        invalidateOnRefresh: true,
+        onUpdate: (st) => { progress.current.target = st.progress; },
+      });
     }, root);
 
     return () => {

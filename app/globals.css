@@ -563,3 +563,6 @@ main, .footer { position: relative; z-index: 2; }
 .photo figcaption::before { background: var(--g-sunset); border-radius: 50%; }
 .section-label span { background: var(--g-spectrum); border-radius: 50%; }
 .job li::before { border-radius: 50%; background: var(--g-electric); }
+
+/* italic overhang: give the gradient-clipped "MOTION" room so the N isn't sliced */
+.m-line-2 em { display: inline-block; padding: 0 0.14em 0.04em 0.06em; margin: 0 -0.14em -0.04em -0.06em; }
