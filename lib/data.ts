@@ -12,7 +12,7 @@ export const profile = {
 
 export const experience: {
   company: string; role: string; date: string; current?: boolean;
-  art: "ai" | "fintech" | "engineering";
+  art?: "ai" | "fintech";
   image?: { src: string; alt: string; caption: string };
   points: string[];
 }[] = [
@@ -44,7 +44,6 @@ export const experience: {
     company: "NIT Andhra Pradesh",
     role: "Mechanical Engineering",
     date: "Graduated 2026",
-    art: "engineering",
     image: { src: "/images/graduation.png", alt: "Sai Chandra receiving his degree certificate", caption: "Receiving my degree — NIT Andhra Pradesh, 2026" },
     points: [
       "Led design for the institute's official tech fest website, Techkriya.",

@@ -571,9 +571,6 @@ main, .footer { position: relative; z-index: 2; }
 .job-art { position: relative; margin: 0; border-radius: calc(var(--radius) - 8px); overflow: hidden; aspect-ratio: 4 / 3; box-shadow: 0 24px 50px -28px rgba(14, 15, 46, 0.45); }
 .job-art svg { display: block; width: 100%; height: 100%; font-family: var(--font-body), system-ui, sans-serif; }
 .job-art::after { content: ""; position: absolute; inset: 0; background: var(--grain); mix-blend-mode: overlay; opacity: 0.45; pointer-events: none; }
-.job-photo-wrap { position: relative; }
-.job-badge { position: absolute; width: clamp(84px, 9vw, 120px); aspect-ratio: 1; left: clamp(-36px, -2.5vw, -18px); bottom: 84px; z-index: 3; filter: drop-shadow(0 14px 24px rgba(14, 15, 46, 0.3)); }
-.job-badge svg { display: block; width: 100%; height: 100%; font-family: var(--font-body), system-ui, sans-serif; }
 
 .art-float { animation: artFloat 5s ease-in-out infinite; }
 .art-float-slow { animation: artFloat 7s ease-in-out infinite; }
@@ -587,8 +584,6 @@ main, .footer { position: relative; z-index: 2; }
 .art-candle { animation: artCandle 3s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom; }
 .art-donut { animation: artDonut 5s ease-in-out infinite; }
 .art-toggle { animation: artToggle 3s ease-in-out infinite; }
-.art-spin { animation: artSpin 9s linear infinite; transform-origin: 70px 70px; }
-.art-spin-slow { animation: artSpin 24s linear infinite reverse; transform-origin: 70px 70px; }
 
 @keyframes artFloat { 50% { transform: translateY(-6px); } }
 @keyframes artPulse { 50% { transform: scale(1.12); opacity: 0.28; } }
@@ -601,12 +596,10 @@ main, .footer { position: relative; z-index: 2; }
 @keyframes artCandle { 50% { transform: scaleY(0.82); } }
 @keyframes artDonut { 50% { stroke-dasharray: 104 126; } }
 @keyframes artToggle { 0%, 40% { transform: translateX(0); } 50%, 90% { transform: translateX(-16px); } }
-@keyframes artSpin { to { transform: rotate(360deg); } }
 
 @media (max-width: 900px) {
   .job-art { max-width: 480px; }
-  .job-badge { left: auto; right: -10px; bottom: auto; top: -18px; }
-}
+  }
 @media (prefers-reduced-motion: reduce) {
-  .job-art *, .job-badge * { animation: none !important; }
+  .job-art * { animation: none !important; }
 }

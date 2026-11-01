@@ -18,12 +18,6 @@ export default function Experience() {
           scrollTrigger: { trigger: art, start: "top 85%" },
         });
       });
-      gsap.utils.toArray<HTMLElement>(".job-badge").forEach((b) => {
-        gsap.fromTo(b, { scale: 0, rotate: -120 }, {
-          scale: 1, rotate: 0, duration: 1.2, ease: "back.out(1.6)",
-          scrollTrigger: { trigger: b, start: "top 90%" },
-        });
-      });
 
       const cards = gsap.utils.toArray<HTMLElement>(".job");
       cards.forEach((card, i) => {
@@ -66,12 +60,9 @@ export default function Experience() {
               </ul>
               </div>
               {job.image ? (
-                <div className="job-photo-wrap">
-                  <Photo src={job.image.src} alt={job.image.alt} caption={job.image.caption} className="job-photo" sizes="(max-width: 900px) 100vw, 30vw" />
-                  <JobArt kind={job.art} />
-                </div>
+                <Photo src={job.image.src} alt={job.image.alt} caption={job.image.caption} className="job-photo" sizes="(max-width: 900px) 100vw, 30vw" />
               ) : (
-                <JobArt kind={job.art} />
+                job.art && <JobArt kind={job.art} />
               )}
             </div>
           </article>

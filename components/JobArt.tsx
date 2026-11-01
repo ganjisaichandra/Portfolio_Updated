@@ -1,6 +1,6 @@
 // Role illustrations for the Experience cards — hand-built SVG, animated with CSS (see .art-* in globals.css).
 
-export type ArtKind = "ai" | "fintech" | "engineering";
+export type ArtKind = "ai" | "fintech";
 
 function AiCreative() {
   return (
@@ -167,34 +167,7 @@ function Fintech() {
   );
 }
 
-// Small spinning gear badge, laid over the corner of the graduation photo.
-function Engineering() {
-  const teeth = Array.from({ length: 12 }, (_, i) => i * 30);
-  return (
-    <svg viewBox="0 0 140 140" role="img" aria-label="Mechanical engineering badge with a gear">
-      <defs>
-        <linearGradient id="eng-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fcc245" /><stop offset="0.55" stopColor="#a8bb52" /><stop offset="1" stopColor="#257e3e" /></linearGradient>
-        <path id="eng-ring" d="M70 70 m-52 0 a52 52 0 1 1 104 0 a52 52 0 1 1 -104 0" />
-      </defs>
-      <circle cx="70" cy="70" r="68" fill="url(#eng-bg)" />
-      <g className="art-spin-slow">
-        <text fontSize="10.5" fill="#0e0f2e" letterSpacing="3.2" fontWeight="600">
-          <textPath href="#eng-ring">MECHANICAL ENGG · NIT AP · 2026 ·</textPath>
-        </text>
-      </g>
-      <g className="art-spin">
-        {teeth.map((a) => (
-          <rect key={a} x="65" y="31" width="10" height="12" rx="2" fill="#0e0f2e" transform={`rotate(${a} 70 70)`} />
-        ))}
-        <circle cx="70" cy="70" r="28" fill="#0e0f2e" />
-        <circle cx="70" cy="70" r="11" fill="#edfbda" />
-      </g>
-    </svg>
-  );
-}
-
 export default function JobArt({ kind }: { kind: ArtKind }) {
-  if (kind === "engineering") return <div className="job-badge"><Engineering /></div>;
   return (
     <figure className={`job-art job-art-${kind}`}>
       {kind === "ai" ? <AiCreative /> : <Fintech />}
