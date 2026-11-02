@@ -50,7 +50,7 @@ export default function Contact() {
     <>
       <section id="contact" ref={root} className="section contact">
         <div className="section-label">
-          <span>05</span> Contact
+          <span>07</span> Contact
         </div>
         <div className="contact-grid">
         <h2 className="contact-title">

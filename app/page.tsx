@@ -9,6 +9,7 @@ import Marquee from "@/components/sections/Marquee";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import Work from "@/components/sections/Work";
+import Graphics from "@/components/sections/Graphics";
 import Motion from "@/components/sections/Motion";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
@@ -27,6 +28,7 @@ export default function Home() {
         <About />
         <Experience />
         <Work />
+        <Graphics />
         <Motion />
         <Skills />
         <Contact />

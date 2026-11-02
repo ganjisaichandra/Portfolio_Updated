@@ -77,7 +77,7 @@ export default function Motion() {
       <div className="motion-canvas">{near && <MotionRibbon progress={progress.current} />}</div>
 
       <div className="motion-meta">
-        <div className="section-label"><span>04</span> Motion</div>
+        <div className="section-label"><span>05</span> Motion</div>
         <p>AI-assisted motion &amp; creatives — scroll to fly through the reel.</p>
       </div>
       <div className="motion-count">

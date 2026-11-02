@@ -102,3 +102,12 @@ export const sphereWords = [
   "User Research", "Tailwind", "Interaction", "Visual Design", "IA", "Lovable", "FigJam",
   "Canva", "GitHub", "Vercel", "User Flows", "Usability", "Responsive", "Stitch", "AI Workflows",
 ];
+
+// AI-generated graphic design samples (shown on the oval carousel)
+export const graphics = [
+  { src: "/images/graphics/burger.jpg", title: "Floating Double Cheeseburger", kind: "Food Advertising", alt: "Deconstructed double cheeseburger floating with flying ingredients on a dark backdrop" },
+  { src: "/images/graphics/neural-core.jpg", title: "Luminous Neural Core", kind: "AI Tech Concept", alt: "Glowing glass sphere with neural filaments in a futuristic chamber" },
+  { src: "/images/graphics/candlestick.jpg", title: "Neon Candlestick Sculpture", kind: "Fintech Visual", alt: "Glowing green 3D candlestick chart wrapped in a glass ribbon" },
+  { src: "/images/graphics/geometric-flow.jpg", title: "Geometric Flow", kind: "Abstract Series", alt: "Isometric terracotta and stone architecture poster titled Geometric Flow" },
+  { src: "/images/graphics/serum.jpg", title: "Luxury Serum Still Life", kind: "Beauty Product", alt: "Glass serum bottle on stone with white flowers and water ribbons" },
+];

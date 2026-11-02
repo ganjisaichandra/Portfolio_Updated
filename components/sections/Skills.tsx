@@ -31,7 +31,7 @@ export default function Skills() {
   return (
     <section id="skills" ref={root} className="section skills">
       <div className="section-label">
-        <span>04</span> Skills &amp; Tools
+        <span>06</span> Skills &amp; Tools
       </div>
       <div className="skills-grid">
         <div className="sphere-wrap" data-cursor="Drag">

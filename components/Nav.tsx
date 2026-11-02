@@ -10,6 +10,7 @@ const links = [
   ["About", "#about"],
   ["Experience", "#experience"],
   ["Work", "#work"],
+  ["Graphics", "#graphics"],
   ["Motion", "#motion"],
   ["Skills", "#skills"],
   ["Contact", "#contact"],
@@ -73,7 +74,7 @@ export default function Nav() {
             <span className="logo-mark">SC</span>
           </a>
           <nav className="nav-links" aria-label="Primary">
-            {links.slice(0, 5).map(([label, href]) => (
+            {links.slice(0, 6).map(([label, href]) => (
               <a key={href} href={href} onClick={(e) => go(e, href)}>
                 {label}
               </a>
