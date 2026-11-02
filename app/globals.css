@@ -742,3 +742,44 @@ main, .footer { position: relative; z-index: 2; }
   .gfx-hint { display: none; }
   .gfx-nav { top: auto; bottom: 28px; transform: none; }
 }
+
+/* ---------- Typography: Plus Jakarta Sans everywhere ---------- */
+:root {
+  --font-display: var(--font-jakarta);
+  --font-body: var(--font-jakarta);
+  --display: var(--font-jakarta), system-ui, sans-serif;
+  --body: var(--font-jakarta), system-ui, sans-serif;
+}
+body { font-feature-settings: "ss01" 0; letter-spacing: -0.005em; }
+/* headlines: tighter, heavier — a sans needs weight where the serif had contrast */
+.about-lead, .job h3, .work-title, .project h3, .contact-title, .m-line, .gfx-title, .gfx-caption h3,
+.headline, .footer-word p, .menu-link, .project-end a, .email, .skill-group h4, .fest-word, .marquee-track span {
+  font-weight: 600; letter-spacing: -0.04em;
+}
+/* italic accent words keep their colour treatments, slightly lighter than the headline */
+em { font-weight: 500; letter-spacing: -0.03em; }
+.job h3 span, .work-title em, .contact-title em { font-weight: 500; }
+.stats b, .job-num, .project-num, .gfx-count { font-weight: 500; letter-spacing: -0.03em; }
+.menu-link sup, .section-label, .project-kicker, .gfx-caption p { letter-spacing: 0.12em; }
+/* Jakarta is wider than the old serif: rebalance the giant type */
+.headline { font-size: clamp(2.4rem, 7.2vw, 7.6rem); line-height: 1.02; }
+.footer-word p { font-size: clamp(3.4rem, 14.6vw, 18rem); letter-spacing: -0.05em; }
+.m-line { font-size: clamp(4rem, 14vw, 15rem); }
+.contact-title { font-size: clamp(3rem, 8.6vw, 8.6rem); }
+.gfx-title { font-size: clamp(2.2rem, min(5.4vw, 9vh), 5.6rem); }
+/* outlines on a variable font show the overlapping contours — use clean solid fills instead */
+.m-line-1 { -webkit-text-stroke: 0; color: rgba(250, 250, 252, 0.92); }
+.vis-fest .fest-word .o, .fest-word .o { -webkit-text-stroke: 0; color: rgba(247, 210, 204, 0.55); }
+@media (max-width: 760px) {
+  .m-line { font-size: 17vw; }
+  .headline { font-size: clamp(2rem, 9.6vw, 3.4rem); }
+  .contact-title { font-size: clamp(2.6rem, 12.5vw, 4rem); }
+}
+@media (max-width: 760px) {
+  .headline { font-size: clamp(1.9rem, 8.6vw, 3.2rem); letter-spacing: -0.045em; }
+  .ha .word, .hb .bw { margin: 0 0.07em; }
+  .pixel-slot { margin: 0 0.07em; }
+}
+body { letter-spacing: 0; }
+.m-line-1 { color: #ececf4; }
+.gfx-title em { padding: 0 0.12em 0.14em; margin-bottom: -0.14em; }

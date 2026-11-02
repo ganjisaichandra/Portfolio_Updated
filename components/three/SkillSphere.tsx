@@ -6,7 +6,7 @@ import { Billboard, OrbitControls, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { sphereWords } from "@/lib/data";
 
-const FONT = "/fonts/SpaceGrotesk.ttf";
+const FONT = "/fonts/PlusJakartaSans-Medium.woff";
 
 // Entrance: 0 -> 1 once the globe scrolls into view (shared by every word).
 type Appear = { started: boolean; t: number };

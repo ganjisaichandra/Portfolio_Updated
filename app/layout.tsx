@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 
-const display = Instrument_Serif({ subsets: ["latin"], variable: "--font-display", weight: "400", style: ["normal", "italic"] });
-const body = Inter({ subsets: ["latin"], variable: "--font-body" });
+// One family for the whole site: Plus Jakarta Sans (variable weight 200–800, with italics)
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", style: ["normal", "italic"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "G. S. V. Sai Chandra — AI Graphic & UI Designer",
@@ -21,7 +21,7 @@ export const viewport: Viewport = { themeColor: "#fafaf8" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={jakarta.variable}>
       <body>{children}</body>
     </html>
   );
