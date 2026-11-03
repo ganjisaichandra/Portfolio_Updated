@@ -18,13 +18,19 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [progress, setProgress] = useState(0);
   const menu = useRef<HTMLDivElement>(null);
+  const bar = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(max > 0 ? window.scrollY / max : 0);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -93,7 +99,7 @@ export default function Nav() {
               <i />
             </span>
           </button>
-          <i className="nav-progress" style={{ transform: `scaleX(${progress})` }} />
+          <i ref={bar} className="nav-progress" style={{ transform: "scaleX(0)" }} />
         </div>
         <div className="nav-right">
           <Magnetic>

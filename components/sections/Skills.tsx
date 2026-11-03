@@ -10,10 +10,14 @@ const SkillSphere = dynamic(() => import("../three/SkillSphere"), { ssr: false }
 export default function Skills() {
   const root = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // Only mount the second WebGL canvas when the section is near the viewport
-    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { rootMargin: "200px" });
+    const io = new IntersectionObserver(([e]) => {
+      setVisible(e.isIntersecting);
+      if (e.isIntersecting) setMounted(true);
+    }, { rootMargin: "200px" });
     if (root.current) io.observe(root.current);
 
     const ctx = gsap.context(() => {
@@ -35,7 +39,7 @@ export default function Skills() {
       </div>
       <div className="skills-grid">
         <div className="sphere-wrap" data-cursor="Drag">
-          {visible && <SkillSphere />}
+          {mounted && <SkillSphere active={visible} />}
           <p className="sphere-hint">Drag to spin · hover a skill</p>
         </div>
         <div className="skills-list">

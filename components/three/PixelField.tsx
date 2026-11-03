@@ -197,7 +197,14 @@ export default function PixelField() {
 
   return (
     <div className="webgl" aria-hidden="true" style={{ visibility: active ? "visible" : "hidden" }}>
-      <Canvas frameloop={active ? "always" : "never"} dpr={[1, 2]} gl={{ antialias: false, alpha: true, premultipliedAlpha: false }} orthographic camera={{ position: [0, 0, 1] }}>
+      <Canvas
+        frameloop={active ? "always" : "never"}
+        dpr={typeof window !== "undefined" && window.innerWidth < 760 ? 1 : [1, 2]}
+        resize={{ debounce: { scroll: 0, resize: 200 }, scroll: false }}
+        gl={{ antialias: false, alpha: true, premultipliedAlpha: false, powerPreference: "high-performance" }}
+        orthographic
+        camera={{ position: [0, 0, 1] }}
+      >
         <Field />
       </Canvas>
     </div>

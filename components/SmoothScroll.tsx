@@ -13,6 +13,10 @@ ScrollTrigger.config({ ignoreMobileResize: true });
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Phones scroll on a separate thread, so pinned sections (Hero, Motion) jitter/flash as they
+    // lock and unlock. normalizeScroll runs touch scrolling in sync with the animations instead.
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    if (touch) ScrollTrigger.normalizeScroll(true);
     const lenis = new Lenis({ lerp: reduce ? 1 : 0.09, smoothWheel: !reduce });
     store.lenis = lenis;
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -42,7 +46,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     };
     document.fonts?.ready.then(refresh);
     window.addEventListener("load", refresh);
-    const ro = new ResizeObserver(refresh);
+    let lastH = 0;
+    const ro = new ResizeObserver(([entry]) => {
+      const h = Math.round(entry.contentRect.height);
+      if (Math.abs(h - lastH) > 4) { lastH = h; refresh(); }
+    });
     ro.observe(document.querySelector("main") ?? document.body);
 
     return () => {
@@ -51,6 +59,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       window.removeEventListener("load", refresh);
       ro.disconnect();
       clearTimeout(t);
+      if (touch) ScrollTrigger.normalizeScroll(false);
       lenis.destroy();
       store.lenis = null;
     };

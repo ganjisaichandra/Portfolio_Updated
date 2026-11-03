@@ -18,8 +18,10 @@ const PATH = [
 
 const WORLD_X = new THREE.Vector3(1, 0, 0);
 const GAP = 0.042; // spacing between cards along the curve (0..1)
-const TEX_W = 512;
-const TEX_H = 288;
+// phones: smaller card textures, repainted at 30fps (cards are small & moving — the difference is invisible)
+const SMALL = typeof window !== "undefined" && window.innerWidth < 760;
+const TEX_W = SMALL ? 384 : 512;
+const TEX_H = SMALL ? 216 : 288;
 
 function roundedAlpha() {
   const c = document.createElement("canvas");
@@ -33,6 +35,7 @@ function roundedAlpha() {
 function Ribbon({ progress }: { progress: RibbonProgress }) {
   const { camera, size } = useThree();
   const group = useRef<THREE.Group>(null);
+  const frameNo = useRef(0);
   const curve = useMemo(() => new THREE.CatmullRomCurve3(PATH, false, "catmullrom", 0.5), []);
 
   // One shared animated canvas per painter type (cheap: 6 redraws per frame, not 24).
@@ -129,9 +132,12 @@ function Ribbon({ progress }: { progress: RibbonProgress }) {
     });
 
     // only redraw the animated designs that are actually visible this frame
+    frameNo.current++;
+    if (SMALL && frameNo.current % 2) return;
     visiblePainters.forEach((key) => {
       const { ctx, tex } = painters[key];
-      paint(key, ctx, TEX_W, TEX_H, t);
+      ctx.setTransform(TEX_W / 512, 0, 0, TEX_W / 512, 0, 0); // designs are drawn in 512×288 space
+      paint(key, ctx, 512, 288, t);
       tex.needsUpdate = true;
     });
   });
@@ -147,9 +153,16 @@ function Ribbon({ progress }: { progress: RibbonProgress }) {
   );
 }
 
-export default function MotionRibbon({ progress }: { progress: RibbonProgress }) {
+export default function MotionRibbon({ progress, active = true }: { progress: RibbonProgress; active?: boolean }) {
+  const mobile = typeof window !== "undefined" && window.innerWidth < 760;
   return (
-    <Canvas camera={{ position: [0, 0, 0], fov: 60, near: 0.1, far: 100 }} dpr={[1, 1.75]} gl={{ alpha: true, antialias: true }}>
+    <Canvas
+      frameloop={active ? "always" : "never"}
+      camera={{ position: [0, 0, 0], fov: 60, near: 0.1, far: 100 }}
+      dpr={mobile ? [1, 1.5] : [1, 1.75]}
+      resize={{ debounce: { scroll: 0, resize: 200 }, scroll: false }}
+      gl={{ alpha: true, antialias: !mobile, powerPreference: "high-performance" }}
+    >
       <Ribbon progress={progress} />
     </Canvas>
   );

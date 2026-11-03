@@ -783,3 +783,24 @@ em { font-weight: 500; letter-spacing: -0.03em; }
 body { letter-spacing: 0; }
 .m-line-1 { color: #ececf4; }
 .gfx-title em { padding: 0 0.12em 0.14em; margin-bottom: -0.14em; }
+
+/* ---------- Smoothness / anti-flicker ---------- */
+/* full-screen WebGL layer sized to the large viewport so the address bar never resizes it */
+.webgl { height: 100lvh; bottom: auto; contain: strict; }
+.motion-canvas, .sphere-wrap { contain: layout paint; }
+/* fewer permanent GPU layers (iOS flickers when it runs out of layer memory); GSAP promotes while tweening */
+.char, .photo-img, .job-inner, .footer-word p { will-change: auto; }
+@media (pointer: coarse), (max-width: 760px) {
+  /* frosted glass over moving content repaints every frame on phones — use solid fills */
+  .nav-pill, .btn-light, .contact .big-circle { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .nav-pill { background: rgba(255, 255, 255, 0.96); }
+  .contact .big-circle { background: radial-gradient(circle at 30% 22%, rgba(255,255,255,.14), transparent 46%), radial-gradient(circle at 50% 50%, #22235e, #0b0c28); }
+  /* soften the heaviest static blurs */
+  .contact::before, .menu::before { filter: blur(50px); }
+  .gfx::before { filter: none; }
+  /* stop off-section CSS loops from waking the GPU */
+  .gfx-card, .project, .job-art { backface-visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none !important; }
+}

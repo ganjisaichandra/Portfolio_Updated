@@ -15,10 +15,14 @@ export default function Motion() {
   const root = useRef<HTMLElement>(null);
   const progress = useRef<RibbonProgress>({ target: 0, value: 0 });
   const [near, setNear] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => setNear(e.isIntersecting), { rootMargin: "150% 0px" });
+    const io = new IntersectionObserver(([e]) => {
+      setNear(e.isIntersecting);
+      if (e.isIntersecting) setMounted(true); // build once, then only pause/resume
+    }, { rootMargin: "150% 0px" });
     if (root.current) io.observe(root.current);
 
     const ctx = gsap.context(() => {
@@ -32,7 +36,8 @@ export default function Motion() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (st) => {
-            setCount(Math.min(motionCards.length, 1 + Math.floor(st.progress * motionCards.length)));
+            const c = Math.min(motionCards.length, 1 + Math.floor(st.progress * motionCards.length));
+            setCount((prev) => (prev === c ? prev : c));
           },
         },
       });
@@ -74,7 +79,7 @@ export default function Motion() {
         <div className="m-line m-line-2" aria-hidden="true"><em>MOTION</em></div>
       </div>
 
-      <div className="motion-canvas">{near && <MotionRibbon progress={progress.current} />}</div>
+      <div className="motion-canvas">{mounted && <MotionRibbon progress={progress.current} active={near} />}</div>
 
       <div className="motion-meta">
         <div className="section-label"><span>05</span> Motion</div>

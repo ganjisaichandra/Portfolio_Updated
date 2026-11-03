@@ -126,9 +126,16 @@ function FitCamera() {
   return null;
 }
 
-export default function SkillSphere() {
+export default function SkillSphere({ active = true }: { active?: boolean }) {
+  const mobile = typeof window !== "undefined" && window.innerWidth < 760;
   return (
-    <Canvas camera={{ position: [0, 0, 12], fov: 50 }} dpr={[1, 1.75]} gl={{ alpha: true }}>
+    <Canvas
+      frameloop={active ? "always" : "never"}
+      camera={{ position: [0, 0, 12], fov: 50 }}
+      dpr={mobile ? [1, 1.5] : [1, 1.75]}
+      resize={{ debounce: { scroll: 0, resize: 200 }, scroll: false }}
+      gl={{ alpha: true }}
+    >
       <fog attach="fog" args={["#fafaf8", 9, 17]} />
       <FitCamera />
       <Cloud />

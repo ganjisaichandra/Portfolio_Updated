@@ -25,7 +25,6 @@ export default function Experience() {
         gsap.to(card.querySelector(".job-inner"), {
           scale: 0.9 - (cards.length - i) * 0.02,
           opacity: 0.35,
-          filter: "blur(2px)",
           ease: "none",
           scrollTrigger: { trigger: cards[i + 1], start: "top bottom", end: "top 20%", scrub: true },
         });
