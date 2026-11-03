@@ -804,3 +804,9 @@ body { letter-spacing: 0; }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none !important; }
 }
+/* footer email: scale with the screen so the full address always fits on phones */
+.email { max-width: 100%; min-width: 0; }
+@media (max-width: 760px) {
+  .email { font-size: clamp(1rem, 6vw, 1.6rem); overflow-wrap: anywhere; }
+  .contact-row > * { min-width: 0; max-width: 100%; }
+}
