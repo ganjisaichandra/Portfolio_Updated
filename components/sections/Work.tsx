@@ -14,12 +14,12 @@ function Visual({ kind }: { kind: string }) {
             <svg viewBox="0 0 200 80" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0" stopColor="#c1ead6" stopOpacity=".5" />
-                  <stop offset="1" stopColor="#c1ead6" stopOpacity="0" />
+                  <stop offset="0" stopColor="#CFE3DF" stopOpacity=".5" />
+                  <stop offset="1" stopColor="#CFE3DF" stopOpacity="0" />
                 </linearGradient>
               </defs>
               <path d="M0 60 L20 52 L40 58 L60 40 L80 45 L100 28 L120 34 L140 18 L160 24 L180 10 L200 14 V80 H0Z" fill="url(#g)" />
-              <path className="draw" d="M0 60 L20 52 L40 58 L60 40 L80 45 L100 28 L120 34 L140 18 L160 24 L180 10 L200 14" fill="none" stroke="#c1ead6" strokeWidth="2.5" />
+              <path className="draw" d="M0 60 L20 52 L40 58 L60 40 L80 45 L100 28 L120 34 L140 18 L160 24 L180 10 L200 14" fill="none" stroke="#CFE3DF" strokeWidth="2.5" />
             </svg>
           </div>
           <div className="ph-row" /><div className="ph-row hl" /><div className="ph-row" />

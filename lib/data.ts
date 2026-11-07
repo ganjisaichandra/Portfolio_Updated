@@ -59,7 +59,7 @@ export const projects = [
     tags: ["Product Design", "Design System", "Dashboards"],
     href: profile.links.behance,
     visual: "fintech",
-    color: "#3152d0",
+    color: "#0F4A46",
   },
   {
     title: "Techkriya Tech Fest",
@@ -68,7 +68,7 @@ export const projects = [
     tags: ["UI/UX", "Interaction", "Web"],
     href: profile.links.behance,
     visual: "fest",
-    color: "#7463ab",
+    color: "#2C807A",
   },
   {
     title: "AI Creative Workflows",
@@ -77,7 +77,7 @@ export const projects = [
     tags: ["AI", "Motion", "Prompting"],
     href: profile.links.figma,
     visual: "ai",
-    color: "#e2574a",
+    color: "#E04E2C",
   },
 ];
 

@@ -13,7 +13,7 @@ type Appear = { started: boolean; t: number };
 const easeOut = (x: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
 const easeBack = (x: number) => { x = Math.min(1, Math.max(0, x)); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
 
-const HOVER = ["#fd7163", "#4a70ec", "#4b96e2", "#7fa23a", "#b966ac"]; // sunset, electric, aurora, citrus, dusk
+const HOVER = ["#FF6845", "#17645F", "#2C807A", "#2C807A", "#E04E2C"]; // sunset, electric, aurora, citrus, dusk
 
 function Word({ children, position, index, count, appear }: { children: string; position: THREE.Vector3; index: number; count: number; appear: Appear }) {
   const ref = useRef<THREE.Mesh>(null);
@@ -23,7 +23,7 @@ function Word({ children, position, index, count, appear }: { children: string; 
   useFrame(() => {
     if (!ref.current) return;
     const mat = ref.current.material as THREE.MeshBasicMaterial;
-    mat.color.lerp(color.set(hovered ? HOVER[index % HOVER.length] : "#0b0b14"), 0.15);
+    mat.color.lerp(color.set(hovered ? HOVER[index % HOVER.length] : "#13201F"), 0.15);
     // staggered pop-in: each word fades and springs up a little after the previous one
     const local = (appear.t - (index / count) * 0.55) / 0.45;
     mat.transparent = true;
@@ -106,7 +106,7 @@ function Cloud({ radius = 4.2 }) {
       ))}
       <mesh>
         <sphereGeometry args={[radius * 0.55, 32, 32]} />
-        <meshBasicMaterial ref={wire} color="#4a70ec" wireframe transparent opacity={0} />
+        <meshBasicMaterial ref={wire} color="#17645F" wireframe transparent opacity={0} />
       </mesh>
     </group>
   );
@@ -136,7 +136,7 @@ export default function SkillSphere({ active = true }: { active?: boolean }) {
       resize={{ debounce: { scroll: 0, resize: 200 }, scroll: false }}
       gl={{ alpha: true }}
     >
-      <fog attach="fog" args={["#fafaf8", 9, 17]} />
+      <fog attach="fog" args={["#F3EEE8", 9, 17]} />
       <FitCamera />
       <Cloud />
       <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={0.6} autoRotate autoRotateSpeed={0.6} />

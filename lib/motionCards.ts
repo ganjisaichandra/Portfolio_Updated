@@ -17,14 +17,14 @@ export const motionCards: { painter: Painter; video?: string }[] = [
 
 // "Five Orbs" palette
 const C = {
-  paper: "#fafaf8",
-  ink: "#0b0b14",
-  night: "#0e0f2e",
-  coral: "#fd7163", peach: "#fe9a74", pink: "#fc9ba3", violet: "#b966ac",
-  haze: "#a2bfe9", cobalt: "#4a70ec", deep: "#3152d0",
-  sky: "#4b96e2", mint: "#c1ead6", cream: "#edfbda",
-  amber: "#fcc245", lime: "#a8bb52", forest: "#257e3e",
-  navy: "#21225c", dviolet: "#7463ab", dpink: "#f08faf", blush: "#f7d2cc",
+  paper: "#F3EEE8",
+  ink: "#13201F",
+  night: "#0B3532",
+  coral: "#FF6845", peach: "#FF9478", pink: "#FFC2B0", violet: "#E04E2C",
+  haze: "#7DB3AC", cobalt: "#17645F", deep: "#0F4A46",
+  sky: "#2C807A", mint: "#CFE3DF", cream: "#F3EEE8",
+  amber: "#FFB199", lime: "#2C807A", forest: "#17645F",
+  navy: "#0B3532", dviolet: "#2C807A", dpink: "#FF9478", blush: "#FBE0D6",
 };
 
 function grad(ctx: CanvasRenderingContext2D, w: number, h: number, stops: [number, string][], angle = 160) {
@@ -131,16 +131,16 @@ export function paint(kind: Painter, ctx: CanvasRenderingContext2D, w: number, h
       const s = (t * 0.6) % 1;
       for (let i = 0; i < 4; i++) {
         const y = 30 + i * 70 - s * 70;
-        rr(30, y, w * 0.55, 54, 14, i % 2 ? "#f0f0ec" : "#e6e6e1");
+        rr(30, y, w * 0.55, 54, 14, i % 2 ? "#EBE4DB" : "#DDD3C7");
         rr(46, y + 16, 80, 10, 5, [C.coral, C.cobalt, C.lime, C.dviolet][i]);
-        rr(46, y + 32, 140, 8, 4, "#d4d4dc");
+        rr(46, y + 32, 140, 8, 4, "#D8CFC4");
       }
       rr(w * 0.66, 30, w * 0.28, h - 60, 18, grad(ctx, w, h, [[0, C.night], [1, C.navy]], 180));
       const on = Math.sin(t * 2) > 0;
-      rr(w * 0.72, h * 0.7, 70, 36, 18, on ? C.coral : "#3a3b66");
+      rr(w * 0.72, h * 0.7, 70, 36, 18, on ? C.coral : "#2A5652");
       ctx.beginPath(); ctx.arc(w * 0.72 + (on ? 52 : 18), h * 0.7 + 18, 13, 0, Math.PI * 2); ctx.fillStyle = "#ffffff"; ctx.fill();
       rr(w * 0.7, 60, w * 0.2, 12, 6, C.mint);
-      rr(w * 0.7, 84, w * 0.14, 10, 5, "#3a3b66");
+      rr(w * 0.7, 84, w * 0.14, 10, 5, "#2A5652");
       break;
     }
     case "waves": {

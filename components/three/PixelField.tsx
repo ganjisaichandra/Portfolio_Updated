@@ -25,14 +25,14 @@ uniform vec4 uRect;      // x, y (bottom-left), w, h in device px
 uniform vec2 uMouse;     // device px, bottom-left origin
 uniform vec3 uBg;      // raw sRGB values (no colour management)
 
-// The five orbs from the palette: strong + light tone of each.
-const vec3 S0 = vec3(0.992, 0.443, 0.388); const vec3 L0 = vec3(0.996, 0.753, 0.659); // sunset  #fd7163 / #fec0a8
-const vec3 S1 = vec3(0.290, 0.439, 0.925); const vec3 L1 = vec3(0.635, 0.749, 0.914); // electric #4a70ec / #a2bfe9
-const vec3 S2 = vec3(0.294, 0.588, 0.886); const vec3 L2 = vec3(0.757, 0.918, 0.839); // aurora  #4b96e2 / #c1ead6
-const vec3 S3 = vec3(0.659, 0.733, 0.322); const vec3 L3 = vec3(0.988, 0.761, 0.271); // citrus  #a8bb52 / #fcc245
-const vec3 S4 = vec3(0.455, 0.388, 0.671); const vec3 L4 = vec3(0.941, 0.561, 0.686); // dusk    #7463ab / #f08faf
+// Palette: Cream #F3EEE8 · Deep Teal #17645F · Coral #FF6845 — strong + light tone of each band.
+const vec3 S0 = vec3(1.000, 0.408, 0.271); const vec3 L0 = vec3(1.000, 0.761, 0.690); // coral #FF6845 / #FFC2B0
+const vec3 S1 = vec3(0.090, 0.392, 0.373); const vec3 L1 = vec3(0.490, 0.702, 0.675); // teal #17645F / #7DB3AC
+const vec3 S2 = vec3(1.000, 0.580, 0.471); const vec3 L2 = vec3(0.984, 0.878, 0.839); // peach #FF9478 / #FBE0D6
+const vec3 S3 = vec3(0.173, 0.502, 0.478); const vec3 L3 = vec3(0.812, 0.890, 0.875); // sea #2C807A / #CFE3DF
+const vec3 S4 = vec3(0.878, 0.306, 0.173); const vec3 L4 = vec3(1.000, 0.694, 0.600); // ember #E04E2C / #FFB199
 
-// k in [0,5): blends smoothly around the colour wheel sunset → electric → aurora → citrus → dusk → sunset
+// k in [0,5): blends smoothly coral → teal → peach → sea → ember → coral
 void orb(float k, out vec3 s, out vec3 l){
   float f = fract(k); float i = floor(mod(k, 5.0));
   vec3 sa, la, sb, lb;
@@ -139,7 +139,7 @@ function Field() {
       uReveal: { value: 0 },
       uRect: { value: new THREE.Vector4(0, 0, 0, 0) },
       uMouse: { value: new THREE.Vector2(-9999, -9999) },
-      uBg: { value: new THREE.Vector3(250 / 255, 250 / 255, 248 / 255) }, // off-white #fafaf8
+      uBg: { value: new THREE.Vector3(243 / 255, 238 / 255, 232 / 255) }, // cream #F3EEE8
     }),
     []
   );
