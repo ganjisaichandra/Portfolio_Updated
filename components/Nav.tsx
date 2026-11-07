@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import Magnetic from "./Magnetic";
 import { scrollToTarget, store } from "@/lib/store";
@@ -76,8 +77,10 @@ export default function Nav() {
     <>
       <header className={`nav ${open ? "open" : ""}`}>
         <div className="nav-pill">
-          <a href="#top" className="logo" onClick={(e) => go(e, "#top")} aria-label="Home">
-            <span className="logo-mark">SC</span>
+          <a href="#top" className="logo" onClick={(e) => go(e, "#top")} aria-label="Sai Chandra — back to top">
+            <span className="logo-mark">
+              <Image src="/images/avatar.jpg" alt="" width={68} height={68} priority />
+            </span>
           </a>
           <nav className="nav-links" aria-label="Primary">
             {links.slice(0, 6).map(([label, href]) => (

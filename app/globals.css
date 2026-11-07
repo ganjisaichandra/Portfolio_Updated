@@ -844,3 +844,11 @@ body { letter-spacing: 0; }
 .nav-cta:hover, .nav-arrow:hover, .btn-dark:hover { background: var(--coral); color: #fff; box-shadow: 0 12px 30px -8px rgba(255, 104, 69, 0.55); }
 .btn-light:hover { border-color: var(--teal); color: var(--teal); }
 .c-ring.labelled { background: var(--teal); border-color: var(--teal); }
+
+/* nav logo: profile photo inside a teal → coral ring */
+.logo-mark { position: relative; padding: 2px; background: var(--g-signature); overflow: hidden; transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+.logo-mark img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--paper); }
+.logo:hover .logo-mark { transform: scale(1.08) rotate(-4deg); box-shadow: 0 6px 18px -4px rgba(255, 104, 69, 0.5); }
+
+/* "Have a project in mind?" — give descenders (the j / p) room inside the reveal masks */
+.contact-title .ln { padding-bottom: 0.2em; margin-bottom: -0.12em; }
